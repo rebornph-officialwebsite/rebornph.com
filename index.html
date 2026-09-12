@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REBORN-PH | Real People, Real Solutions, Digitally Driven</title>
+    <!-- Google Fonts & FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #071113;
+            --bg-card: #0d1a1d;
+            --bg-card-hover: #122428;
+            --primary: #00d2c4; /* Blue-Green */
+            --primary-hover: #00a89d;
+            --gold: #d4af37; /* Gold Accent */
+            --gold-light: #f3e5ab;
+            --text-main: #ffffff;
+            --text-muted: #8ca3a6;
+            --border-color: rgba(0, 210, 196, 0.15);
+            --border-gold: rgba(212, 175, 55, 0.25);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: rgba(7, 17, 19, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .logo-img {
+            height: 38px;
+            width: auto;
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--gold);
+        }
+
+        /* Dropdown for About */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            padding: 12px 0;
+            min-width: 180px;
+            display: none;
+            z-index: 1100;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 8px 20px;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li a:hover {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--gold);
+        }
+
+        .btn-get-started {
+            background: linear-gradient(135deg, var(--gold), #aa8c2c);
+            color: #071113;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-get-started:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 160px 0 100px;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 210, 196, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-content h1 span {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary-outline {
+            border: 1px solid var(--border-gold);
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            background: transparent;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .btn-primary-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            background: #111;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.85;
+        }
+
+        /* --- SECTION HEADINGS --- */
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-tag {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- SOLUTIONS SECTION --- */
+        .solutions-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .solutions-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .solution-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .solution-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .solution-icon {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .solution-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .solution-card p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .solution-card:hover .card-link {
+            color: var(--gold);
+        }
+
+        /* --- ABOUT PREVIEW SECTION --- */
+        .about-preview {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-img-box {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            height: 350px;
+            background: linear-gradient(135deg, var(--bg-card), #050b10);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .features-mini-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .feature-mini-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-mini-item i {
+            color: var(--gold);
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .feature-mini-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .feature-mini-item p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* --- INDUSTRIES SECTION --- */
+        .industries-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .industry-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .industry-card:hover {
+            border-color: var(--gold);
+            background: var(--bg-card-hover);
+        }
+
+        .industry-card i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .industry-card span {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        /* --- ANONYMOUS FEEDBACK SECTION --- */
+        .feedback-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
+            background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+        }
+
+        .feedback-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        .feedback-form textarea {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            color: #fff;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 120px;
+            margin-bottom: 20px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .feedback-form textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .feedbacks-list {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feedback-item {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .feedback-item p {
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .feedback-item span {
+            font-size: 11px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- CTA BANNER --- */
+        .cta-banner {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+            background: linear-gradient(180deg, var(--bg-dark), var(--bg-card));
+        }
+
+        .cta-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            padding: 50px;
+            border-radius: 16px;
+        }
+
+        .cta-box h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .cta-box p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-dark);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .footer-info p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-icons a {
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--gold);
+            color: #071113;
+            border-color: var(--gold);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        /* --- MANAGEMENT PAGE VIEW STYLES --- */
+        .page-view {
+            display: none;
+            padding: 160px 0 100px;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .team-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .team-card p {
+            font-size: 13px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media(max-width: 968px) {
+            .hero-grid, .solutions-layout, .about-grid, .cta-box {
+                grid-template-columns: 1fr;
+            }
+            .solutions-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .industries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER NAVIGATION -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo" onclick="switchPage('home')">
+                <img src="https://scontent.fmnl4-8.fna.fbcdn.net/v/t39.30808-6/500648262_122118113228843314_7041744195342799668_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEg2lwFfVbIEH2wtDmqk0jqeTs0xwKEYNd5OzTHAoRg1zHwRBMDwi1EKnwYS7dFfVPZXbRI0PcBLN96nTjktvE-&_nc_ohc=mR-EyzafTkMQ7kNvwFdUiAT&_nc_oc=AdqVpUBFFFK6iBxsPYWmbYLaLyNYhnNS8wTAcZKLyRxhIPdUCOSd_xSnSpgnXTey7GI&_nc_zt=23&_nc_ht=scontent.fmnl4-8.fna&_nc_gid=ZdxvfY0TM43hYbNOT-tJtw&_nc_ss=7b2a8&oh=00_AQL8bNmx2D9hHWZWg8NB2dU9PeY1adq47yxiYAlHkqZSRA&oe=6AAABABF" alt="REBORN-PH Logo" class="logo-img">
+                REBORN-PH
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active" onclick="switchPage('home')">Home</a>
+                <div class="dropdown">
+                    <a href="#about" onclick="switchPage('home')">About <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" onclick="switchPage('management')">Management</a></li>
+                    </ul>
+                </div>
+                <a href="#solutions" onclick="switchPage('home')">Solutions</a>
+                <a href="#industries" onclick="switchPage('home')">Industries</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-get-started">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </header>
+
+    <!-- MAIN HOMEPAGE VIEW -->
+    <div id="home-view" class="page-view active">
+        
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1>Real People, Real Solutions, <span>Digitally Driven.</span></h1>
+                        <p>We help businesses, organizations, and communities leverage technology and innovative solutions for sustainable growth and efficiency since May 2025.</p>
+                        <div class="hero-btns">
+                            <a href="#solutions" class="btn-get-started">Our Solutions <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#contact" class="btn-primary-outline">Get in Touch</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" alt="Workspace">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOLUTIONS SECTION -->
+        <section id="solutions" class="solutions-section">
+            <div class="container">
+                <div class="solutions-layout">
+                    <div class="section-header" style="margin-bottom: 0;">
+                        <span class="section-tag">Our Solutions</span>
+                        <h2 class="section-title">Solutions Built for Your Success</h2>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px;">We offer a range of digital and professional solutions designed to help you work smarter, operate more efficiently, and stay ahead.</p>
+                    </div>
+                    <div class="solutions-grid">
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                <h3>Digital Transformation</h3>
+                                <p>Modernize your processes and embrace innovation.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-gears"></i></div>
+                                <h3>Business Technology</h3>
+                                <p>Reliable tools and systems for better operations.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-code"></i></div>
+                                <h3>Software Development</h3>
+                                <p>Custom solutions for your unique needs.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-user-tie"></i></div>
+                                <h3>Professional Services</h3>
+                                <p>Expert support for your digital journey.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-chart-line"></i></div>
+                                <h3>Data & Analytics</h3>
+                                <p>Turn data into better decisions.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="solution-card">
+                            <div>
+                                <div class="solution-icon"><i class="fa-solid fa-headset"></i></div>
+                                <h3>Business Support</h3>
+                                <p>Ongoing assistance when you need it.</p>
+                            </div>
+                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT PREVIEW SECTION -->
+        <section id="about" class="about-preview">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-img-box">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Modern Building" style="width:100%; height:100%; object-fit: cover; opacity: 0.8;">
+                    </div>
+                    <div>
+                        <span class="section-tag">About REBORN PH</span>
+                        <h2 class="section-title">Innovative Solutions for a Stronger Tomorrow</h2>
+                        <p style="color: var(--text-muted); font-size: 14px; margin-top: 16px;">REBORN PH (established in May 2025) is a technology-driven company committed to providing practical and scalable solutions for businesses, organizations, and communities. We combine people, technology, and creativity to help our partners achieve long-term success.</p>
+                        
+                        <div class="features-mini-grid">
+                            <div class="feature-mini-item">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <div>
+                                    <h4>Reliable</h4>
+                                    <p>Built on trust and integrity.</p>
+                                </div>
+                            </div>
+                            <div class="feature-mini-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <div>
+                                    <h4>Secure</h4>
+                                    <p>Your data and operations are protected.</p>
+                                </div>
+                            </div>
+                            <div class="feature-mini-item">
+                                <i class="fa-solid fa-users"></i>
+                                <div>
+                                    <h4>Collaborative</h4>
+                                    <p>We grow together with our partners.</p>
+                                </div>
+                            </div>
+                            <div class="feature-mini-item">
+                                <i class="fa-solid fa-lightbulb"></i>
+                                <div>
+                                    <h4>Innovative</h4>
+                                    <p>Turning ideas into real solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INDUSTRIES SECTION -->
+        <section id="industries" class="industries-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Industries We Serve</span>
+                    <h2 class="section-title">Trusted Across Different Industries</h2>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">We work with organizations from various sectors, providing solutions that fit their unique needs and challenges.</p>
+                </div>
+                <div class="industries-grid">
+                    <div class="industry-card"><i class="fa-solid fa-graduation-cap"></i><span>Education</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-building"></i><span>Corporate</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-heart-pulse"></i><span>Healthcare</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-landmark"></i><span>Government</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-user-group"></i><span>Professional Services</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-industry"></i><span>Manufacturing</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANONYMOUS QUOTE & FEEDBACK SECTION -->
+        <section class="feedback-section">
+            <div class="container">
+                <div class="section-header" style="text-align: center;">
+                    <span class="section-tag">Community Voices</span>
+                    <h2 class="section-title">Anonymous Quote & Feedback</h2>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Share your thoughts, suggestions, or quotes anonymously with our team.</p>
+                </div>
+                <div class="feedback-container">
+                    <form class="feedback-form" id="feedbackForm" onsubmit="submitFeedback(event)">
+                        <textarea id="feedbackInput" placeholder="Write your anonymous feedback or quote here..." required></textarea>
+                        <button type="submit" class="btn-get-started" style="width: 100%; justify-content: center;">Submit Anonymously <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                    <div class="feedbacks-list" id="feedbackList">
+                        <div class="feedback-item">
+                            <p>"REBORN PH has completely streamlined our internal operational workflows since partnering with them in mid-2025. Highly recommended!"</p>
+                            <span>— Anonymous Partner / Client</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BANNER -->
+        <section id="contact" class="cta-banner">
+            <div class="container">
+                <div class="cta-box">
+                    <div>
+                        <span class="section-tag">Let's Work Together</span>
+                        <h2>Ready to Build Something Better?</h2>
+                        <p>Get in touch with us today and let's discuss how REBORN PH can support your goals and create lasting value.</p>
+                    </div>
+                    <a href="mailto:contact@reborn.com" class="btn-get-started">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- MANAGEMENT SUBPAGE VIEW -->
+    <div id="management-view" class="page-view">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <span class="section-tag">Leadership Team</span>
+                <h2 class="section-title">REBORN PH Management</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Meet the executive minds guiding our vision forward since May 2025.</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">AM</div>
+                    <h3>Arjay A. Maniego</h3>
+                    <p>CEO, President</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">JC</div>
+                    <h3>Joshua Carpio</h3>
+                    <p>Director for Administrative Affairs</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">MC</div>
+                    <h3>McEdrick Cuaresma</h3>
+                    <p>Account Operations Manager</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">AC</div>
+                    <h3>Archie Dela Cruz</h3>
+                    <p>Director, Business Affairs</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">GF</div>
+                    <h3>Gab Fajardo</h3>
+                    <p>Director, Partnership and Linkages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="#" class="logo" style="font-size: 18px;" onclick="switchPage('home')">
+                        <img src="https://scontent.fmnl4-8.fna.fbcdn.net/v/t39.30808-6/500648262_122118113228843314_7041744195342799668_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEg2lwFfVbIEH2wtDmqk0jqeTs0xwKEYNd5OzTHAoRg1zHwRBMDwi1EKnwYS7dFfVPZXbRI0PcBLN96nTjktvE-&_nc_ohc=mR-EyzafTkMQ7kNvwFdUiAT&_nc_oc=AdqVpUBFFFK6iBxsPYWmbYLaLyNYhnNS8wTAcZKLyRxhIPdUCOSd_xSnSpgnXTey7GI&_nc_zt=23&_nc_ht=scontent.fmnl4-8.fna&_nc_gid=ZdxvfY0TM43hYbNOT-tJtw&_nc_ss=7b2a8&oh=00_AQL8bNmx2D9hHWZWg8NB2dU9PeY1adq47yxiYAlHkqZSRA&oe=6AAABABF" alt="REBORN-PH Logo" class="logo-img" style="height: 30px;">
+                        REBORN-PH
+                    </a>
+                    <p>Empowering businesses and communities through technology since May 2025.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact-info">
+                    <div><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> contact@reborn.com</div>
+                    <div><i class="fa-solid fa-phone" style="color: var(--gold);"></i> +63 981 517 4817</div>
+                    <div><i class="fa-solid fa-location-dot" style="color: var(--gold);"></i> Cabanatuan City, Philippines</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 REBORN PH. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#" onclick="switchPage('home')">Privacy Policy</a>
+                    <a href="#" onclick="switchPage('home')">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTION SCRIPT -->
+    <script>
+        function switchPage(pageId) {
+            const homeView = document.getElementById('home-view');
+            const managementView = document.getElementById('management-view');
+            
+            if (pageId === 'management') {
+                homeView.classList.remove('active');
+                managementView.classList.add('active');
+                window.scrollTo(0, 0);
+            } else {
+                managementView.classList.remove('active');
+                homeView.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        function submitFeedback(e) {
+            e.preventDefault();
+            const input = document.getElementById('feedbackInput');
+            const list = document.getElementById('feedbackList');
+            
+            if(input.value.trim() === '') return;
+
+            const newItem = document.createElement('div');
+            newItem.className = 'feedback-item';
+            newItem.innerHTML = `
+                <p>"${escapeHtml(input.value)}"</p>
+                <span>— Anonymous Community Feedback</span>
+            `;
+            
+            list.prepend(newItem);
+            input.value = '';
+            alert('Your anonymous quote/feedback has been submitted successfully!');
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>
