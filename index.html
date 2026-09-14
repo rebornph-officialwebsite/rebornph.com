@@ -500,7 +500,7 @@
             font-weight: 500;
         }
 
-        /* --- ANONYMOUS FEEDBACK SECTION --- */
+        /* --- ANONYMOUS FEEDBACK & AUTOMATIC TESTIMONIALS SECTION --- */
         .feedback-section {
             padding: 80px 0;
             border-top: 1px solid var(--border-color);
@@ -563,6 +563,84 @@
             letter-spacing: 1px;
         }
 
+        /* --- AUTOMATIC TESTIMONIALS CAROUSEL / TICKER --- */
+        .auto-testimonials-wrapper {
+            margin-top: 60px;
+            border-top: 1px dashed var(--border-gold);
+            padding-top: 40px;
+        }
+
+        .auto-testimonials-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            animation: fadeInOut 0.8s ease-in-out;
+            width: 100%;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-slide p {
+            font-size: 15px;
+            font-style: italic;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            line-height: 1.6;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonial-slide span {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        @keyframes fadeInOut {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--gold);
+            width: 20px;
+            border-radius: 4px;
+        }
+
         /* --- PAGE VIEWS --- */
         .page-view {
             display: none;
@@ -571,6 +649,46 @@
 
         .page-view.active {
             display: block;
+        }
+
+        /* --- LEGAL MODAL / CONTENT VIEWS --- */
+        .legal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .legal-container h2 {
+            font-size: clamp(24px, 4vw, 30px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+        }
+
+        .legal-container h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .legal-container p, .legal-container li {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .legal-container ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 16px;
         }
 
         /* --- CONTACT PAGE VIEW STYLES --- */
@@ -783,6 +901,10 @@
             transition: var(--transition);
         }
 
+        .team-card.centered-single {
+            grid-column: 2;
+        }
+
         .team-card:hover {
             border-color: var(--gold);
             transform: translateY(-4px);
@@ -910,6 +1032,10 @@
             gap: 20px;
         }
 
+        .footer-bottom-links a {
+            cursor: pointer;
+        }
+
         .footer-bottom-links a:hover {
             color: var(--gold);
         }
@@ -950,13 +1076,14 @@
             .team-grid {
                 grid-template-columns: 1fr;
             }
-            .team-card.featured {
+            .team-card.featured, .team-card.centered-single {
                 max-width: 100%;
+                grid-column: 1 / -1;
             }
             .industries-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .contact-container, .solution-detail-container, .feedback-container {
+            .contact-container, .solution-detail-container, .feedback-container, .legal-container {
                 padding: 20px;
             }
             .hero {
@@ -1182,6 +1309,53 @@
                             <span>— Anonymous Partner / Client</span>
                         </div>
                     </div>
+
+                    <!-- AUTOMATIC FEEDBACKS STATEMENTS (Client & Partner Testimonials Carousel) -->
+                    <div class="auto-testimonials-wrapper">
+                        <div class="section-header" style="text-align: center; margin-bottom: 20px;">
+                            <span class="section-tag">Client & Partner Testimonials</span>
+                            <h2 style="font-size: 20px;" class="section-title">Trusted Worldwide</h2>
+                        </div>
+                        <div class="auto-testimonials-container" id="autoTestimonialsContainer">
+                            <div class="testimonial-slide active">
+                                <p>“Working with REBORN‑PH has been seamless. Their team listens, adapts, and delivers beyond expectations. Collaboration feels natural and productive.”</p>
+                                <span>— Maria L., Manufacturing Company, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“The support we received was outstanding. REBORN‑PH guided us through every step, ensuring our systems were efficient and reliable. We truly value this partnership.”</p>
+                                <span>— James K., Textile Industry, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“REBORN‑PH transformed our operations with innovative solutions. Their collaborative approach made us feel like we were building success together.”</p>
+                                <span>— Aiko T., Technology Firm, Japan, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“From planning to execution, REBORN‑PH worked hand‑in‑hand with our team. Their professionalism and dedication to collaboration set them apart.”</p>
+                                <span>— Sipho M., Logistics Group, South Africa, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“We trust REBORN‑PH because they don’t just provide services — they become part of the journey. Their collaborative spirit has helped us achieve milestones faster.”</p>
+                                <span>— Hiroshi N., Customer Service Solutions, Japan, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“The collaboration with REBORN‑PH was smooth and transparent. They understood our needs and worked closely with us to deliver practical solutions.”</p>
+                                <span>— Emily R., Education Sector, Australia, 2025</span>
+                            </div>
+                            <div class="testimonial-slide">
+                                <p>“REBORN‑PH has proven to be a reliable partner. Their collaborative mindset and responsive support make them a trusted name in our industry.”</p>
+                                <span>— David S., Corporate Services, South Africa, 2025</span>
+                            </div>
+                        </div>
+                        <div class="carousel-dots" id="carouselDots">
+                            <span class="dot active" onclick="currentSlide(0)"></span>
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                            <span class="dot" onclick="currentSlide(5)"></span>
+                            <span class="dot" onclick="currentSlide(6)"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1318,10 +1492,10 @@
             </div>
             
             <div class="team-grid">
-                <!-- CEO -->
+                <!-- CEO (Updated Photo) -->
                 <div class="team-card featured">
                     <div class="team-avatar">
-                        <img src="https://scontent.fmnl4-5.fna.fbcdn.net/v/t39.30808-6/517588899_24439565072294084_8419802905572824635_n.jpg?stp=dst-jpg_tt6&cstp=mx1252x2048&ctp=s1252x2048&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHZt_i4lJW9gfYAtcUTeYKxxgnFvdqmtPfGCcW92qa0943H7JZlgLLmV8JxsKteECPgHogdPz6-YHdBBdquorHx&_nc_ohc=H7hrScuVeFoQ7kNvwFXU8Ea&_nc_oc=Adrhi62RVX0CMN4LN2-r-lCR8xLM8FH_OuSmMVtrQQwOvpGkFpoLkOFJwBZehXvMNWc&_nc_zt=23&_nc_ht=scontent.fmnl4-5.fna&_nc_gid=CzV_MbLUScpUX6yGrPmu7w&_nc_ss=7b2a8&oh=00_AQKf9zMzbLomej0WzFbQDqV3CNdve_lQf7wF59Yw3x4rXw&oe=6AAD8591" alt="Arjay A. Maniego">
+                        <img src="https://scontent.fmnl4-2.fna.fbcdn.net/v/t39.30808-6/541800834_24879639208286666_159337197845317379_n.jpg?stp=dst-jpg_tt6&cstp=mx1638x2048&ctp=s1638x2048&_nc_cat=111&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeG4rAN1qu-IQuwcgndOzu9KqaIFXYS6BaGpogVdhLoFoV7vmEJnWd7jBRVBEWzOZJnmRph6OgxmkPJKxpJ0cF_M&_nc_ohc=RGVrwtet3fgQ7kNvwFRxFGx&_nc_oc=AdoZiwl0PuVkUAR0D2nCQSzVgZ0h6mQRbF3_3xi6gBXa4_ppIcVu7ACgGHPpcAUJFaQ&_nc_zt=23&_nc_ht=scontent.fmnl4-2.fna&_nc_gid=inoTnnJ3p3EOssTHnGEXYw&_nc_ss=7b2a8&oh=00_AQJ3RzppSoR84u64vbWczsXVnxThvsPKqn7icWdH4Wp7FQ&oe=6AAD874C" alt="Arjay A. Maniego">
                     </div>
                     <h3>Arjay A. Maniego</h3>
                     <p>CEO, President</p>
@@ -1342,12 +1516,120 @@
                 </div>
                 <div class="team-card">
                     <h3>Archie Dela Cruz</h3>
-                    <p>Director, Business Affairs</p>
+                    <p>Director, Financial Affairs</p>
                 </div>
                 <div class="team-card">
                     <h3>Gab Fajardo</h3>
                     <p>Director, Partnership and Linkages</p>
                 </div>
+                <div class="team-card">
+                    <h3>Karren Shiene Quetua</h3>
+                    <p>External Auditor</p>
+                </div>
+                <div class="team-card">
+                    <h3>Joanne Amianit</h3>
+                    <p>Directress, Business Affairs</p>
+                </div>
+                <div class="team-card">
+                    <h3>Nikita O. Adalla</h3>
+                    <p>Head, Marketing and Corporate Communications</p>
+                </div>
+                <div class="team-card">
+                    <h3>Alexa O. Legaspi</h3>
+                    <p>Head, Human Resource Office</p>
+                </div>
+                <!-- Prince Neilbert Vicente (Centered single item with no neighbors on its sides) -->
+                <div class="team-card centered-single">
+                    <h3>Prince Neilbert Vicente</h3>
+                    <p>Legal and External Affairs Coordinator</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIVACY POLICY VIEW -->
+    <div id="privacy-view" class="page-view">
+        <div class="container">
+            <div class="legal-container">
+                <button class="back-to-solutions" onclick="switchPage('home')">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </button>
+                <h2>📜 Privacy Policy (REBORN‑PH Platform)</h2>
+                
+                <h3>Introduction</h3>
+                <p>REBORN‑PH values your privacy. This Privacy Policy explains how we collect, use, and protect your information when you use our freelance platform. By accessing our services, you agree to the practices described here.</p>
+                
+                <h3>Information We Collect</h3>
+                <ul>
+                    <li>Personal details such as name, email, and contact information when you register.</li>
+                    <li>Professional information including skills, portfolio, and work history.</li>
+                    <li>Transactional data related to projects, payments, and communications.</li>
+                    <li>Technical data such as IP address, browser type, and usage patterns.</li>
+                </ul>
+
+                <h3>How We Use Your Information</h3>
+                <ul>
+                    <li>To connect freelancers with clients and facilitate project collaboration.</li>
+                    <li>To process payments securely and maintain transaction records.</li>
+                    <li>To improve platform functionality and user experience.</li>
+                    <li>To communicate updates, opportunities, and support services.</li>
+                </ul>
+
+                <h3>Data Protection</h3>
+                <p>We implement strict security measures to protect your information. Your data is stored securely and only accessible to authorized personnel. We do not sell or share your personal information with third parties except as required by law or to fulfill contractual obligations.</p>
+
+                <h3>User Rights</h3>
+                <p>You have the right to access, update, or delete your personal information. You may also request limitations on how your data is processed. For inquiries, contact us at contact@reborn.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS AND CONDITIONS VIEW -->
+    <div id="terms-view" class="page-view">
+        <div class="container">
+            <div class="legal-container">
+                <button class="back-to-solutions" onclick="switchPage('home')">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home
+                </button>
+                <h2>📑 Terms and Conditions (REBORN‑PH Freelance Platform)</h2>
+                
+                <h3>Introduction</h3>
+                <p>These Terms and Conditions govern your use of the REBORN‑PH freelance platform. By registering or using our services, you agree to comply with these terms.</p>
+
+                <h3>Platform Use</h3>
+                <ul>
+                    <li>Freelancers may create profiles to showcase skills and apply for projects.</li>
+                    <li>Clients may post projects, review proposals, and hire freelancers.</li>
+                    <li>All users must provide accurate information and maintain professional conduct.</li>
+                </ul>
+
+                <h3>Payments</h3>
+                <ul>
+                    <li>Payments are processed securely through approved channels.</li>
+                    <li>Freelancers are compensated based on agreed project terms.</li>
+                    <li>REBORN‑PH may charge service fees for transactions.</li>
+                </ul>
+
+                <h3>Responsibilities</h3>
+                <ul>
+                    <li>Freelancers are responsible for delivering agreed work on time and with quality.</li>
+                    <li>Clients are responsible for providing clear project requirements and timely payments.</li>
+                    <li>REBORN‑PH acts as a facilitator and is not liable for disputes between freelancers and clients, but we provide mediation support when necessary.</li>
+                </ul>
+
+                <h3>Prohibited Activities</h3>
+                <ul>
+                    <li>Misrepresentation of skills or credentials.</li>
+                    <li>Posting fraudulent or illegal projects.</li>
+                    <li>Harassment, discrimination, or abusive behavior.</li>
+                    <li>Attempting to bypass the platform’s payment system.</li>
+                </ul>
+
+                <h3>Termination</h3>
+                <p>REBORN‑PH reserves the right to suspend or terminate accounts that violate these terms.</p>
+
+                <h3>Governing Law</h3>
+                <p>These terms are governed by the laws of the Philippines. Any disputes shall be resolved under applicable jurisdiction.</p>
             </div>
         </div>
     </div>
@@ -1363,9 +1645,8 @@
                     </a>
                     <p>Empowering businesses and communities through technology since May 2025.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/affinitopiaph" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/reborn_philippines/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-contact-info">
@@ -1377,8 +1658,8 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 REBORN PH. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a onclick="switchPage('home')">Privacy Policy</a>
-                    <a onclick="switchPage('home')">Terms of Service</a>
+                    <a onclick="switchPage('privacy')">Privacy Policy</a>
+                    <a onclick="switchPage('terms')">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -1448,11 +1729,15 @@
             const managementView = document.getElementById('management-view');
             const contactView = document.getElementById('contact-view');
             const detailView = document.getElementById('solution-detail-view');
+            const privacyView = document.getElementById('privacy-view');
+            const termsView = document.getElementById('terms-view');
             
             homeView.classList.remove('active');
             managementView.classList.remove('active');
             contactView.classList.remove('active');
             detailView.classList.remove('active');
+            privacyView.classList.remove('active');
+            termsView.classList.remove('active');
             
             document.getElementById('nav-home').classList.remove('active');
             document.getElementById('nav-contact').classList.remove('active');
@@ -1462,6 +1747,10 @@
             } else if (pageId === 'contact') {
                 contactView.classList.add('active');
                 document.getElementById('nav-contact').classList.add('active');
+            } else if (pageId === 'privacy') {
+                privacyView.classList.add('active');
+            } else if (pageId === 'terms') {
+                termsView.classList.add('active');
             } else if (pageId === 'home') {
                 homeView.classList.add('active');
                 document.getElementById('nav-home').classList.add('active');
@@ -1480,10 +1769,14 @@
             const managementView = document.getElementById('management-view');
             const contactView = document.getElementById('contact-view');
             const detailView = document.getElementById('solution-detail-view');
+            const privacyView = document.getElementById('privacy-view');
+            const termsView = document.getElementById('terms-view');
 
             homeView.classList.remove('active');
             managementView.classList.remove('active');
             contactView.classList.remove('active');
+            privacyView.classList.remove('active');
+            termsView.classList.remove('active');
             detailView.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1572,6 +1865,44 @@
                 "'": '&#039;'
             };
             return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        /* --- AUTOMATIC TESTIMONIALS CAROUSEL SCRIPT --- */
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        let testimonialInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            if (index >= slides.length) currentSlideIndex = 0;
+            if (index < 0) currentSlideIndex = slides.length - 1;
+
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(testimonialInterval);
+            testimonialInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Initialize carousel auto-play
+        if (slides.length > 0) {
+            testimonialInterval = setInterval(nextSlide, 5000);
         }
     </script>
 </body>
