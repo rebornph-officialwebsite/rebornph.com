@@ -1408,29 +1408,32 @@
             </div>
 
             <div class="contact-container">
-                <form id="mainContactForm" onsubmit="handleContactSubmit(event)">
+                <form id="mainContactForm" action="https://formsubmit.co/contact@reborn.com" method="POST" enctype="multipart/form-data">
+                    <!-- Email delivery settings -->
+                    <input type="hidden" name="_subject" value="New REBORN-PH website inquiry">
+                    <input type="hidden" name="_template" value="table">
                     <!-- Full Name -->
                     <div class="contact-form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
                     </div>
 
                     <!-- Email Address -->
                     <div class="contact-form-group">
                         <label for="emailAddress">Email Address</label>
-                        <input type="email" id="emailAddress" placeholder="Enter your email address" required>
+                        <input type="email" id="emailAddress" name="email" placeholder="Enter your email address" required>
                     </div>
 
                     <!-- Phone Number -->
                     <div class="contact-form-group">
                         <label for="phoneNumber">Phone Number <span>(optional)</span></label>
-                        <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number">
                     </div>
 
                     <!-- Inquiry Type -->
                     <div class="contact-form-group">
                         <label for="inquiryType">Inquiry Type</label>
-                        <select id="inquiryType" required>
+                        <select id="inquiryType" name="inquiryType" required>
                             <option value="" disabled selected>Select an inquiry type</option>
                             <option value="General Inquiry">General Inquiry</option>
                             <option value="Solutions / Services">Solutions / Services</option>
@@ -1443,14 +1446,14 @@
                     <!-- Message / Details -->
                     <div class="contact-form-group">
                         <label for="messageDetails">Message / Details</label>
-                        <textarea id="messageDetails" placeholder="Visitor explains their request, issue, or idea..." required></textarea>
+                        <textarea id="messageDetails" name="message" placeholder="Visitor explains their request, issue, or idea..." required></textarea>
                     </div>
 
                     <!-- Optional File Upload -->
                     <div class="contact-form-group">
                         <label>Attachment <span>(Optional)</span></label>
                         <div class="file-upload-box" onclick="document.getElementById('fileUpload').click()">
-                            <input type="file" id="fileUpload" onchange="updateFileName(this)">
+                            <input type="file" id="fileUpload" name="attachment" accept=".pdf,.doc,.docx" onchange="updateFileName(this)">
                             <div class="file-upload-label" id="fileUploadLabel">
                                 <i class="fa-solid fa-cloud-arrow-up" style="color: var(--gold); font-size: 18px;"></i>
                                 Click to upload file (PDF, DOC, DOCX)
@@ -1475,7 +1478,7 @@
                 <!-- Confirmation Message -->
                 <div class="form-success-message" id="formSuccessMessage">
                     <h3>Thank you, we’ll get back to you soon</h3>
-                    <p>Your inquiry has been successfully transmitted. An auto-reply confirmation email has also been queued to your provided address.</p>
+                    <p>Your inquiry has been successfully sent to the REBORN-PH team.</p>
                     <button onclick="resetContactForm()" class="btn-primary-outline" style="margin-top: 20px;">Send Another Message</button>
                 </div>
             </div>
