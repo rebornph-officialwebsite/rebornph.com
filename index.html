@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>REBORN-PH | Real People, Real Solutions, Digitally Driven</title>
-    <!-- Google Fonts & FontAwesome for Icons -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1yJZNyJZgtkYGwZxVlGQqw_Ixfqf8Nubv">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -13,9 +15,9 @@
             --bg-dark: #071113;
             --bg-card: #0d1a1d;
             --bg-card-hover: #122428;
-            --primary: #00d2c4; /* Blue-Green */
+            --primary: #00d2c4;
             --primary-hover: #00a89d;
-            --gold: #d4af37; /* Gold Accent */
+            --gold: #d4af37;
             --gold-light: #f3e5ab;
             --text-main: #ffffff;
             --text-muted: #8ca3a6;
@@ -28,7 +30,12 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
@@ -36,6 +43,8 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
 
         a {
@@ -50,13 +59,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
         /* --- HEADER & NAVIGATION --- */
         header {
-            background-color: rgba(7, 17, 19, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(7, 17, 19, 0.9);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
             position: fixed;
             top: 0;
             left: 0;
@@ -69,21 +79,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             font-weight: 800;
-            font-size: 20px;
+            font-size: 18px;
             letter-spacing: -0.5px;
             color: var(--text-main);
+            cursor: pointer;
         }
 
         .logo-img {
-            height: 38px;
+            height: 34px;
             width: auto;
             border-radius: 6px;
             object-fit: contain;
@@ -92,7 +103,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 28px;
         }
 
         .nav-links a {
@@ -100,13 +111,13 @@
             font-weight: 500;
             color: var(--text-muted);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: var(--gold);
         }
 
-        /* Dropdown for About */
         .dropdown {
             position: relative;
         }
@@ -119,7 +130,7 @@
             border: 1px solid var(--border-gold);
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            padding: 12px 0;
+            padding: 8px 0;
             min-width: 180px;
             display: none;
             z-index: 1100;
@@ -131,7 +142,7 @@
 
         .dropdown-menu li a {
             display: block;
-            padding: 8px 20px;
+            padding: 8px 16px;
             color: var(--text-muted);
             white-space: nowrap;
         }
@@ -144,7 +155,7 @@
         .btn-get-started {
             background: linear-gradient(135deg, var(--gold), #aa8c2c);
             color: #071113;
-            padding: 10px 20px;
+            padding: 10px 18px;
             border-radius: 6px;
             font-weight: 600;
             font-size: 14px;
@@ -154,6 +165,7 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            -webkit-appearance: none;
         }
 
         .btn-get-started:hover {
@@ -162,9 +174,73 @@
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
+        /* Mobile Menu Toggle Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 22px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Mobile Drawer */
+        .mobile-drawer {
+            position: fixed;
+            top: 70px;
+            left: -100%;
+            width: 100%;
+            height: calc(100vh - 70px);
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            transition: left 0.3s ease-in-out;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .mobile-drawer.open {
+            left: 0;
+        }
+
+        .mobile-drawer a {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-drawer a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-sublinks {
+            padding-left: 16px;
+            display: none;
+            flex-direction: column;
+        }
+
+        .mobile-sublinks.open {
+            display: flex;
+        }
+
+        .mobile-sublinks a {
+            font-size: 15px;
+            border-bottom: none;
+            color: var(--text-muted);
+            padding: 12px 0;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
-            padding: 160px 0 100px;
+            padding: 140px 0 80px;
             background: radial-gradient(circle at 80% 20%, rgba(0, 210, 196, 0.08) 0%, transparent 50%),
                         radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
         }
@@ -177,7 +253,7 @@
         }
 
         .hero-content h1 {
-            font-size: 48px;
+            font-size: clamp(34px, 5vw, 48px);
             font-weight: 800;
             line-height: 1.15;
             margin-bottom: 20px;
@@ -198,6 +274,7 @@
         .hero-btns {
             display: flex;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
         .btn-primary-outline {
@@ -213,6 +290,7 @@
             background: transparent;
             color: var(--text-main);
             cursor: pointer;
+            -webkit-appearance: none;
         }
 
         .btn-primary-outline:hover {
@@ -238,7 +316,7 @@
 
         /* --- SECTION HEADINGS --- */
         .section-header {
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
         .section-tag {
@@ -252,21 +330,21 @@
         }
 
         .section-title {
-            font-size: 32px;
+            font-size: clamp(26px, 4vw, 32px);
             font-weight: 700;
             letter-spacing: -0.5px;
         }
 
         /* --- SOLUTIONS SECTION --- */
         .solutions-section {
-            padding: 100px 0;
+            padding: 80px 0;
             border-top: 1px solid var(--border-color);
         }
 
         .solutions-layout {
             display: grid;
             grid-template-columns: 1fr 2fr;
-            gap: 60px;
+            gap: 50px;
             align-items: start;
         }
 
@@ -318,6 +396,12 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            text-align: left;
+            -webkit-appearance: none;
         }
 
         .solution-card:hover .card-link {
@@ -326,14 +410,14 @@
 
         /* --- ABOUT PREVIEW SECTION --- */
         .about-preview {
-            padding: 100px 0;
+            padding: 80px 0;
             border-top: 1px solid var(--border-color);
         }
 
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
+            gap: 50px;
             align-items: center;
         }
 
@@ -341,7 +425,7 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-gold);
-            height: 350px;
+            height: 320px;
             background: linear-gradient(135deg, var(--bg-card), #050b10);
             display: flex;
             align-items: center;
@@ -352,7 +436,7 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 32px;
+            margin-top: 28px;
         }
 
         .feature-mini-item {
@@ -380,7 +464,7 @@
 
         /* --- INDUSTRIES SECTION --- */
         .industries-section {
-            padding: 100px 0;
+            padding: 80px 0;
             border-top: 1px solid var(--border-color);
         }
 
@@ -388,14 +472,14 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 16px;
-            margin-top: 32px;
+            margin-top: 28px;
         }
 
         .industry-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 24px 16px;
+            padding: 20px 12px;
             text-align: center;
             transition: var(--transition);
         }
@@ -406,19 +490,19 @@
         }
 
         .industry-card i {
-            font-size: 24px;
+            font-size: 22px;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .industry-card span {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
         }
 
         /* --- ANONYMOUS FEEDBACK SECTION --- */
         .feedback-section {
-            padding: 100px 0;
+            padding: 80px 0;
             border-top: 1px solid var(--border-color);
             background: radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
         }
@@ -429,7 +513,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
             border-radius: 16px;
-            padding: 40px;
+            padding: 30px;
         }
 
         .feedback-form textarea {
@@ -437,14 +521,15 @@
             background: var(--bg-dark);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
             color: #fff;
-            font-size: 14px;
+            font-size: 16px; /* Prevents auto-zoom on iOS Safari */
             resize: vertical;
-            min-height: 120px;
-            margin-bottom: 20px;
+            min-height: 110px;
+            margin-bottom: 16px;
             outline: none;
             transition: var(--transition);
+            -webkit-appearance: none;
         }
 
         .feedback-form textarea:focus {
@@ -452,7 +537,7 @@
         }
 
         .feedbacks-list {
-            margin-top: 40px;
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
             gap: 16px;
@@ -461,9 +546,8 @@
         .feedback-item {
             background: var(--bg-dark);
             border: 1px solid var(--border-color);
-            padding: 20px;
+            padding: 18px;
             border-radius: 8px;
-            position: relative;
         }
 
         .feedback-item p {
@@ -479,36 +563,268 @@
             letter-spacing: 1px;
         }
 
-        /* --- CTA BANNER --- */
-        .cta-banner {
-            padding: 80px 0;
-            border-top: 1px solid var(--border-color);
-            background: linear-gradient(180deg, var(--bg-dark), var(--bg-card));
+        /* --- PAGE VIEWS --- */
+        .page-view {
+            display: none;
+            padding: 130px 0 80px;
         }
 
-        .cta-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .page-view.active {
+            display: block;
+        }
+
+        /* --- CONTACT PAGE VIEW STYLES --- */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
             background: var(--bg-card);
             border: 1px solid var(--border-gold);
-            padding: 50px;
             border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .cta-box h2 {
-            font-size: 28px;
+        .contact-form-group {
+            margin-bottom: 18px;
+        }
+
+        .contact-form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 6px;
+        }
+
+        .contact-form-group label span {
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .contact-form-group input,
+        .contact-form-group select,
+        .contact-form-group textarea {
+            width: 100%;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            color: #fff;
+            font-size: 16px; /* Crucial for iOS Safari to avoid zoom */
+            outline: none;
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .contact-form-group select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238ca3a6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .contact-form-group input:focus,
+        .contact-form-group select:focus,
+        .contact-form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .contact-form-group select option {
+            background: var(--bg-dark);
+            color: #fff;
+        }
+
+        .file-upload-box {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            background: var(--bg-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-box:hover {
+            border-color: var(--gold);
+        }
+
+        .file-upload-box input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .captcha-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-dark);
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .captcha-box input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--gold);
+            cursor: pointer;
+            -webkit-appearance: checkbox;
+        }
+
+        .form-success-message {
+            display: none;
+            background: rgba(0, 210, 196, 0.1);
+            border: 1px solid var(--primary);
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-success-message h3 {
+            color: var(--primary);
             margin-bottom: 8px;
         }
 
-        .cta-box p {
+        .form-success-message p {
             color: var(--text-muted);
             font-size: 14px;
         }
 
+        /* --- SOLUTION DETAIL VIEW STYLES --- */
+        .solution-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .back-to-solutions {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .solution-detail-container h2 {
+            font-size: clamp(24px, 4vw, 32px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .solution-detail-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .solution-detail-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- MANAGEMENT PAGE VIEW STYLES --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .team-card.featured {
+            grid-column: 1 / -1;
+            max-width: 380px;
+            margin: 0 auto 10px;
+            width: 100%;
+        }
+
+        .team-card.featured .team-avatar {
+            width: 120px;
+            height: 120px;
+        }
+
+        .team-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .team-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+        }
+
+        .team-avatar {
+            width: 76px;
+            height: 76px;
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--text-muted);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 auto 16px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .team-card p {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
         /* --- FOOTER --- */
         footer {
-            padding: 60px 0 30px;
+            padding: 50px 0 30px;
             border-top: 1px solid var(--border-color);
             background-color: var(--bg-dark);
         }
@@ -517,13 +833,15 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
         .footer-info p {
             font-size: 13px;
             color: var(--text-muted);
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .footer-contact-info {
@@ -540,15 +858,24 @@
             gap: 10px;
         }
 
+        .footer-contact-info a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .footer-contact-info a:hover {
+            color: var(--gold);
+        }
+
         .social-icons {
             display: flex;
-            gap: 12px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 14px;
         }
 
         .social-icons a {
-            width: 32px;
-            height: 32px;
+            width: 34px;
+            height: 34px;
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 6px;
@@ -570,7 +897,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 24px;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-top: 20px;
             border-top: 1px solid var(--border-color);
             font-size: 12px;
             color: var(--text-muted);
@@ -578,87 +907,60 @@
 
         .footer-bottom-links {
             display: flex;
-            gap: 24px;
+            gap: 20px;
         }
 
         .footer-bottom-links a:hover {
             color: var(--gold);
         }
 
-        /* --- MANAGEMENT PAGE VIEW STYLES --- */
-        .page-view {
-            display: none;
-            padding: 160px 0 100px;
-        }
-
-        .page-view.active {
-            display: block;
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .team-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .team-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
-        }
-
-        .team-avatar {
-            width: 80px;
-            height: 80px;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin: 0 auto 20px;
-            border: 1px solid var(--border-gold);
-        }
-
-        .team-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .team-card p {
-            font-size: 13px;
-            color: var(--gold);
-            font-weight: 500;
-        }
-
-        /* Responsive */
-        @media(max-width: 968px) {
-            .hero-grid, .solutions-layout, .about-grid, .cta-box {
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media(max-width: 1024px) {
+            .solutions-layout {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
             .solutions-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             .industries-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .team-grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        }
+
+        @media(max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image {
+                margin-top: 10px;
+            }
+            .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-card.featured {
+                max-width: 100%;
+            }
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-container, .solution-detail-container, .feedback-container {
+                padding: 20px;
+            }
+            .hero {
+                padding: 120px 0 60px;
             }
         }
     </style>
@@ -668,25 +970,47 @@
     <!-- HEADER NAVIGATION -->
     <header>
         <div class="container nav-container">
-            <a href="#" class="logo" onclick="switchPage('home')">
+            <a class="logo" onclick="switchPage('home'); closeMobileMenu();">
                 <img src="https://scontent.fmnl4-8.fna.fbcdn.net/v/t39.30808-6/500648262_122118113228843314_7041744195342799668_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEg2lwFfVbIEH2wtDmqk0jqeTs0xwKEYNd5OzTHAoRg1zHwRBMDwi1EKnwYS7dFfVPZXbRI0PcBLN96nTjktvE-&_nc_ohc=mR-EyzafTkMQ7kNvwFdUiAT&_nc_oc=AdqVpUBFFFK6iBxsPYWmbYLaLyNYhnNS8wTAcZKLyRxhIPdUCOSd_xSnSpgnXTey7GI&_nc_zt=23&_nc_ht=scontent.fmnl4-8.fna&_nc_gid=ZdxvfY0TM43hYbNOT-tJtw&_nc_ss=7b2a8&oh=00_AQL8bNmx2D9hHWZWg8NB2dU9PeY1adq47yxiYAlHkqZSRA&oe=6AAABABF" alt="REBORN-PH Logo" class="logo-img">
                 REBORN-PH
             </a>
+            
             <nav class="nav-links">
-                <a href="#" class="active" onclick="switchPage('home')">Home</a>
+                <a id="nav-home" class="active" onclick="switchPage('home')">Home</a>
                 <div class="dropdown">
-                    <a href="#about" onclick="switchPage('home')">About <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
+                    <a onclick="switchPage('home')">About <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" onclick="switchPage('management')">Management</a></li>
+                        <li><a onclick="switchPage('management')">Management Team</a></li>
                     </ul>
                 </div>
-                <a href="#solutions" onclick="switchPage('home')">Solutions</a>
-                <a href="#industries" onclick="switchPage('home')">Industries</a>
-                <a href="#contact">Contact</a>
+                <a onclick="switchPage('home'); scrollToSection('solutions');">Solutions</a>
+                <a onclick="switchPage('home'); scrollToSection('industries');">Industries</a>
+                <a id="nav-contact" onclick="switchPage('contact')">Contact</a>
             </nav>
-            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-get-started">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <button onclick="switchPage('contact'); closeMobileMenu();" class="btn-get-started" style="display: none; @media(min-width: 769px){display:flex;}">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                </button>
+            </div>
         </div>
     </header>
+
+    <!-- MOBILE DRAWER NAVIGATION -->
+    <div class="mobile-drawer" id="mobileDrawer">
+        <a onclick="switchPage('home'); closeMobileMenu();">Home</a>
+        <a onclick="toggleMobileSublinks()">About <i class="fa-solid fa-chevron-down" id="mobileArrow" style="font-size: 12px;"></i></a>
+        <div class="mobile-sublinks" id="mobileSublinks">
+            <a onclick="switchPage('management'); closeMobileMenu();">Management Team</a>
+        </div>
+        <a onclick="switchPage('home'); closeMobileMenu(); scrollToSection('solutions');">Solutions</a>
+        <a onclick="switchPage('home'); closeMobileMenu(); scrollToSection('industries');">Industries</a>
+        <a onclick="switchPage('contact'); closeMobileMenu();">Contact Us</a>
+        <div style="margin-top: 30px;">
+            <button onclick="switchPage('contact'); closeMobileMenu();" class="btn-get-started" style="width: 100%; justify-content: center; padding: 14px;">Get Started <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
 
     <!-- MAIN HOMEPAGE VIEW -->
     <div id="home-view" class="page-view active">
@@ -699,8 +1023,8 @@
                         <h1>Real People, Real Solutions, <span>Digitally Driven.</span></h1>
                         <p>We help businesses, organizations, and communities leverage technology and innovative solutions for sustainable growth and efficiency since May 2025.</p>
                         <div class="hero-btns">
-                            <a href="#solutions" class="btn-get-started">Our Solutions <i class="fa-solid fa-arrow-right"></i></a>
-                            <a href="#contact" class="btn-primary-outline">Get in Touch</a>
+                            <a href="#solutions" class="btn-get-started" onclick="scrollToSection('solutions'); return false;">Our Solutions <i class="fa-solid fa-arrow-right"></i></a>
+                            <button onclick="switchPage('contact')" class="btn-primary-outline">Get in Touch</button>
                         </div>
                     </div>
                     <div class="hero-image">
@@ -726,7 +1050,7 @@
                                 <h3>Digital Transformation</h3>
                                 <p>Modernize your processes and embrace innovation.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('digitalTransformation')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="solution-card">
                             <div>
@@ -734,7 +1058,7 @@
                                 <h3>Business Technology</h3>
                                 <p>Reliable tools and systems for better operations.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('businessTechnology')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="solution-card">
                             <div>
@@ -742,7 +1066,7 @@
                                 <h3>Software Development</h3>
                                 <p>Custom solutions for your unique needs.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('softwareDevelopment')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="solution-card">
                             <div>
@@ -750,7 +1074,7 @@
                                 <h3>Professional Services</h3>
                                 <p>Expert support for your digital journey.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('professionalServices')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="solution-card">
                             <div>
@@ -758,7 +1082,7 @@
                                 <h3>Data & Analytics</h3>
                                 <p>Turn data into better decisions.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('dataAnalytics')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                         <div class="solution-card">
                             <div>
@@ -766,7 +1090,7 @@
                                 <h3>Business Support</h3>
                                 <p>Ongoing assistance when you need it.</p>
                             </div>
-                            <a href="#" class="card-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                            <button class="card-link" onclick="openSolutionDetail('businessSupport')">Learn More <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
@@ -833,7 +1157,7 @@
                     <div class="industry-card"><i class="fa-solid fa-building"></i><span>Corporate</span></div>
                     <div class="industry-card"><i class="fa-solid fa-heart-pulse"></i><span>Healthcare</span></div>
                     <div class="industry-card"><i class="fa-solid fa-landmark"></i><span>Government</span></div>
-                    <div class="industry-card"><i class="fa-solid fa-user-group"></i><span>Professional Services</span></div>
+                    <div class="industry-card"><i class="fa-solid fa-user-group"></i><span>Services</span></div>
                     <div class="industry-card"><i class="fa-solid fa-industry"></i><span>Manufacturing</span></div>
                 </div>
             </div>
@@ -850,7 +1174,7 @@
                 <div class="feedback-container">
                     <form class="feedback-form" id="feedbackForm" onsubmit="submitFeedback(event)">
                         <textarea id="feedbackInput" placeholder="Write your anonymous feedback or quote here..." required></textarea>
-                        <button type="submit" class="btn-get-started" style="width: 100%; justify-content: center;">Submit Anonymously <i class="fa-solid fa-paper-plane"></i></button>
+                        <button type="submit" class="btn-get-started" style="width: 100%; justify-content: center; padding: 14px;">Submit Anonymously <i class="fa-solid fa-paper-plane"></i></button>
                     </form>
                     <div class="feedbacks-list" id="feedbackList">
                         <div class="feedback-item">
@@ -863,19 +1187,125 @@
         </section>
 
         <!-- CTA BANNER -->
-        <section id="contact" class="cta-banner">
+        <section class="cta-banner" style="padding: 60px 0; border-top: 1px solid var(--border-color); background: linear-gradient(180deg, var(--bg-dark), var(--bg-card));">
             <div class="container">
-                <div class="cta-box">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px; background: var(--bg-card); border: 1px solid var(--border-gold); padding: 40px; border-radius: 16px;">
                     <div>
                         <span class="section-tag">Let's Work Together</span>
-                        <h2>Ready to Build Something Better?</h2>
-                        <p>Get in touch with us today and let's discuss how REBORN PH can support your goals and create lasting value.</p>
+                        <h2 style="font-size: clamp(22px, 3vw, 28px); margin-bottom: 8px;">Ready to Build Something Better?</h2>
+                        <p style="color: var(--text-muted); font-size: 14px;">Get in touch with us today and let's discuss how REBORN PH can support your goals.</p>
                     </div>
-                    <a href="mailto:contact@reborn.com" class="btn-get-started">Contact Us <i class="fa-solid fa-arrow-right"></i></a>
+                    <button onclick="switchPage('contact')" class="btn-get-started">Contact Us <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </section>
 
+    </div>
+
+    <!-- SOLUTION DETAIL VIEW -->
+    <div id="solution-detail-view" class="page-view">
+        <div class="container">
+            <div class="solution-detail-container">
+                <button class="back-to-solutions" onclick="switchPage('home')">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Home / Solutions
+                </button>
+                
+                <h2 id="solutionDetailTitle">Solution Title</h2>
+                
+                <div class="solution-detail-content" id="solutionDetailBody">
+                    <!-- Dynamic Content Injected Here -->
+                </div>
+
+                <div class="solution-detail-actions">
+                    <button onclick="switchPage('contact')" class="btn-get-started">Inquire About This Solution <i class="fa-solid fa-arrow-right"></i></button>
+                    <button onclick="switchPage('home')" class="btn-primary-outline">Explore Other Solutions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE VIEW -->
+    <div id="contact-view" class="page-view">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Send Us a Message</h2>
+                <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Fill out the form below and our team will get back to you shortly.</p>
+            </div>
+
+            <div class="contact-container">
+                <form id="mainContactForm" onsubmit="handleContactSubmit(event)">
+                    <!-- Full Name -->
+                    <div class="contact-form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="contact-form-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" id="emailAddress" placeholder="Enter your email address" required>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="contact-form-group">
+                        <label for="phoneNumber">Phone Number <span>(optional)</span></label>
+                        <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
+                    </div>
+
+                    <!-- Inquiry Type -->
+                    <div class="contact-form-group">
+                        <label for="inquiryType">Inquiry Type</label>
+                        <select id="inquiryType" required>
+                            <option value="" disabled selected>Select an inquiry type</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Solutions / Services">Solutions / Services</option>
+                            <option value="Partnership">Partnership</option>
+                            <option value="Support Request">Support Request</option>
+                            <option value="Careers">Careers</option>
+                        </select>
+                    </div>
+
+                    <!-- Message / Details -->
+                    <div class="contact-form-group">
+                        <label for="messageDetails">Message / Details</label>
+                        <textarea id="messageDetails" placeholder="Visitor explains their request, issue, or idea..." required></textarea>
+                    </div>
+
+                    <!-- Optional File Upload -->
+                    <div class="contact-form-group">
+                        <label>Attachment <span>(Optional)</span></label>
+                        <div class="file-upload-box" onclick="document.getElementById('fileUpload').click()">
+                            <input type="file" id="fileUpload" onchange="updateFileName(this)">
+                            <div class="file-upload-label" id="fileUploadLabel">
+                                <i class="fa-solid fa-cloud-arrow-up" style="color: var(--gold); font-size: 18px;"></i>
+                                Click to upload file (PDF, DOC, DOCX)
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Captcha -->
+                    <div class="contact-form-group">
+                        <div class="captcha-box">
+                            <input type="checkbox" id="captchaCheck" required>
+                            <label for="captchaCheck" style="margin-bottom:0; cursor:pointer; color: var(--text-muted);">I am not a robot (Anti-spam verification)</label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-get-started" style="width: 100%; justify-content: center; padding: 14px; font-size: 15px;">
+                        Submit Inquiry <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+
+                <!-- Confirmation Message -->
+                <div class="form-success-message" id="formSuccessMessage">
+                    <h3>Thank you, we’ll get back to you soon</h3>
+                    <p>Your inquiry has been successfully transmitted. An auto-reply confirmation email has also been queued to your provided address.</p>
+                    <button onclick="resetContactForm()" class="btn-primary-outline" style="margin-top: 20px;">Send Another Message</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- MANAGEMENT SUBPAGE VIEW -->
@@ -888,28 +1318,33 @@
             </div>
             
             <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-avatar">AM</div>
+                <!-- CEO -->
+                <div class="team-card featured">
+                    <div class="team-avatar">
+                        <img src="https://scontent.fmnl4-5.fna.fbcdn.net/v/t39.30808-6/517588899_24439565072294084_8419802905572824635_n.jpg?stp=dst-jpg_tt6&cstp=mx1252x2048&ctp=s1252x2048&_nc_cat=105&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeHZt_i4lJW9gfYAtcUTeYKxxgnFvdqmtPfGCcW92qa0943H7JZlgLLmV8JxsKteECPgHogdPz6-YHdBBdquorHx&_nc_ohc=H7hrScuVeFoQ7kNvwFXU8Ea&_nc_oc=Adrhi62RVX0CMN4LN2-r-lCR8xLM8FH_OuSmMVtrQQwOvpGkFpoLkOFJwBZehXvMNWc&_nc_zt=23&_nc_ht=scontent.fmnl4-5.fna&_nc_gid=CzV_MbLUScpUX6yGrPmu7w&_nc_ss=7b2a8&oh=00_AQKf9zMzbLomej0WzFbQDqV3CNdve_lQf7wF59Yw3x4rXw&oe=6AAD8591" alt="Arjay A. Maniego">
+                    </div>
                     <h3>Arjay A. Maniego</h3>
                     <p>CEO, President</p>
                 </div>
+
+                <!-- Officers -->
                 <div class="team-card">
-                    <div class="team-avatar">JC</div>
+                    <h3>Jan Ax Benhur Santiago</h3>
+                    <p>Technology & Smart Digital Infrastructure Officer</p>
+                </div>
+                <div class="team-card">
                     <h3>Joshua Carpio</h3>
                     <p>Director for Administrative Affairs</p>
                 </div>
                 <div class="team-card">
-                    <div class="team-avatar">MC</div>
                     <h3>McEdrick Cuaresma</h3>
                     <p>Account Operations Manager</p>
                 </div>
                 <div class="team-card">
-                    <div class="team-avatar">AC</div>
                     <h3>Archie Dela Cruz</h3>
                     <p>Director, Business Affairs</p>
                 </div>
                 <div class="team-card">
-                    <div class="team-avatar">GF</div>
                     <h3>Gab Fajardo</h3>
                     <p>Director, Partnership and Linkages</p>
                 </div>
@@ -922,8 +1357,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <a href="#" class="logo" style="font-size: 18px;" onclick="switchPage('home')">
-                        <img src="https://scontent.fmnl4-8.fna.fbcdn.net/v/t39.30808-6/500648262_122118113228843314_7041744195342799668_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEg2lwFfVbIEH2wtDmqk0jqeTs0xwKEYNd5OzTHAoRg1zHwRBMDwi1EKnwYS7dFfVPZXbRI0PcBLN96nTjktvE-&_nc_ohc=mR-EyzafTkMQ7kNvwFdUiAT&_nc_oc=AdqVpUBFFFK6iBxsPYWmbYLaLyNYhnNS8wTAcZKLyRxhIPdUCOSd_xSnSpgnXTey7GI&_nc_zt=23&_nc_ht=scontent.fmnl4-8.fna&_nc_gid=ZdxvfY0TM43hYbNOT-tJtw&_nc_ss=7b2a8&oh=00_AQL8bNmx2D9hHWZWg8NB2dU9PeY1adq47yxiYAlHkqZSRA&oe=6AAABABF" alt="REBORN-PH Logo" class="logo-img" style="height: 30px;">
+                    <a class="logo" style="font-size: 18px;" onclick="switchPage('home')">
+                        <img src="https://scontent.fmnl4-8.fna.fbcdn.net/v/t39.30808-6/500648262_122118113228843314_7041744195342799668_n.jpg?stp=dst-jpg_tt6&cstp=mx500x500&ctp=s500x500&_nc_cat=110&_nc_map=urlgen_bucketless&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeEg2lwFfVbIEH2wtDmqk0jqeTs0xwKEYNd5OzTHAoRg1zHwRBMDwi1EKnwYS7dFfVPZXbRI0PcBLN96nTjktvE-&_nc_ohc=mR-EyzafTkMQ7kNvwFdUiAT&_nc_oc=AdqVpUBFFFK6iBxsPYWmbYLaLyNYhnNS8wTAcZKLyRxhIPdUCOSd_xSnSpgnXTey7GI&_nc_zt=23&_nc_ht=scontent.fmnl4-8.fna&_nc_gid=ZdxvfY0TM43hYbNOT-tJtw&_nc_ss=7b2a8&oh=00_AQL8bNmx2D9hHWZWg8NB2dU9PeY1adq47yxiYAlHkqZSRA&oe=6AAABABF" alt="REBORN-PH Logo" class="logo-img" style="height: 28px;">
                         REBORN-PH
                     </a>
                     <p>Empowering businesses and communities through technology since May 2025.</p>
@@ -934,7 +1369,7 @@
                     </div>
                 </div>
                 <div class="footer-contact-info">
-                    <div><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> contact@reborn.com</div>
+                    <div><i class="fa-solid fa-envelope" style="color: var(--gold);"></i> <a onclick="switchPage('contact')">contact@reborn.com</a></div>
                     <div><i class="fa-solid fa-phone" style="color: var(--gold);"></i> +63 981 517 4817</div>
                     <div><i class="fa-solid fa-location-dot" style="color: var(--gold);"></i> Cabanatuan City, Philippines</div>
                 </div>
@@ -942,8 +1377,8 @@
             <div class="footer-bottom">
                 <p>&copy; 2026 REBORN PH. All rights reserved.</p>
                 <div class="footer-bottom-links">
-                    <a href="#" onclick="switchPage('home')">Privacy Policy</a>
-                    <a href="#" onclick="switchPage('home')">Terms of Service</a>
+                    <a onclick="switchPage('home')">Privacy Policy</a>
+                    <a onclick="switchPage('home')">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -951,19 +1386,162 @@
 
     <!-- INTERACTION SCRIPT -->
     <script>
+        const solutionData = {
+            digitalTransformation: {
+                title: "Digital Transformation",
+                content: `
+                    <p>REBORN‑PH helps organizations modernize their processes and embrace innovation. We guide clients through every stage of transformation, ensuring that their operations are future‑ready and aligned with global standards.</p>
+                    <p>Our approach is holistic — combining technology upgrades, workflow redesign, and staff training to create sustainable change. This ensures that transformation is not just about adopting new tools, but about reshaping the way businesses operate.</p>
+                    <p>Clients in Australia have trusted us to digitize their educational institutions, streamlining enrollment and learning management systems. Their success stories prove that our solutions deliver measurable impact.</p>
+                    <p>With every project, we emphasize reliability and adaptability, making REBORN‑PH a trusted partner for organizations seeking to thrive in a digital era.</p>
+                `
+            },
+            businessTechnology: {
+                title: "Business Technology",
+                content: `
+                    <p>We provide reliable tools and systems that improve day‑to‑day operations. Our business technology solutions are designed to enhance efficiency, reduce costs, and ensure seamless integration across departments.</p>
+                    <p>From enterprise resource planning to secure communication platforms, we tailor solutions to fit each client’s unique needs. This flexibility makes our technology a backbone for sustainable growth.</p>
+                    <p>In South Africa, corporate clients rely on our systems to manage logistics and supply chains, ensuring that operations remain smooth even in complex environments. Their trust demonstrates our ability to deliver across industries.</p>
+                    <p>By combining innovation with stability, REBORN‑PH ensures that businesses can operate confidently, knowing their technology is dependable.</p>
+                `
+            },
+            softwareDevelopment: {
+                title: "Software Development",
+                content: `
+                    <p>Our software development team builds custom solutions that address specific challenges. We don’t just deliver code — we deliver tools that solve problems and create opportunities.</p>
+                    <p>Every project begins with understanding the client’s goals, then designing applications that are scalable, secure, and user‑friendly. This ensures that our software continues to add value long after deployment.</p>
+                    <p>Clients in Japan have partnered with us to create customer service platforms that improve responsiveness and satisfaction. Their reliance on our solutions highlights our ability to meet global standards.</p>
+                    <p>By focusing on innovation and precision, REBORN‑PH has become a trusted developer for organizations that demand excellence.</p>
+                `
+            },
+            professionalServices: {
+                title: "Professional Services",
+                content: `
+                    <p>We provide expert support for every stage of the digital journey. Our professional services include consulting, training, and implementation, ensuring that clients maximize the value of their investments.</p>
+                    <p>Our team works closely with organizations to identify opportunities, mitigate risks, and build strategies that align with long‑term goals. This collaborative approach fosters trust and confidence.</p>
+                    <p>In Australia, South Africa, and Japan, clients rely on our professional services for ongoing customer support, system maintenance, and staff training. Their continued partnership reflects our commitment to excellence.</p>
+                    <p>By combining expertise with empathy, REBORN‑PH ensures that every client feels supported and empowered in their digital journey.</p>
+                `
+            },
+            dataAnalytics: {
+                title: "Data & Analytics",
+                content: `
+                    <p>We help organizations turn data into actionable insights. Our analytics solutions empower leaders to make informed decisions that drive growth and efficiency.</p>
+                    <p>From dashboards to predictive models, we provide tools that transform raw information into clear strategies. This enables clients to stay ahead in competitive markets.</p>
+                    <p>Clients in South Africa have used our analytics to optimize community healthcare programs, while partners in Japan rely on our systems to track customer satisfaction. These examples show the breadth of our impact.</p>
+                    <p>REBORN‑PH is trusted because we don’t just deliver numbers — we deliver clarity, confidence, and direction.</p>
+                `
+            },
+            businessSupport: {
+                title: "Business Support",
+                content: `
+                    <p>We offer ongoing assistance tailored to each client’s needs. Our business support services ensure that organizations can focus on growth while we handle the technical and operational challenges.</p>
+                    <p>Support includes troubleshooting, system monitoring, and customer service solutions that keep businesses running smoothly. This proactive approach prevents disruptions and builds trust.</p>
+                    <p>Clients in Australia, South Africa, and Japan continue to rely on our support teams for customer service, technical assistance, and operational guidance. Their loyalty proves the strength of our partnerships.</p>
+                    <p>With REBORN‑PH, support is not just a service — it’s a commitment to long‑term success.</p>
+                `
+            }
+        };
+
         function switchPage(pageId) {
             const homeView = document.getElementById('home-view');
             const managementView = document.getElementById('management-view');
+            const contactView = document.getElementById('contact-view');
+            const detailView = document.getElementById('solution-detail-view');
             
+            homeView.classList.remove('active');
+            managementView.classList.remove('active');
+            contactView.classList.remove('active');
+            detailView.classList.remove('active');
+            
+            document.getElementById('nav-home').classList.remove('active');
+            document.getElementById('nav-contact').classList.remove('active');
+
             if (pageId === 'management') {
-                homeView.classList.remove('active');
                 managementView.classList.add('active');
-                window.scrollTo(0, 0);
-            } else {
-                managementView.classList.remove('active');
+            } else if (pageId === 'contact') {
+                contactView.classList.add('active');
+                document.getElementById('nav-contact').classList.add('active');
+            } else if (pageId === 'home') {
                 homeView.classList.add('active');
-                window.scrollTo(0, 0);
+                document.getElementById('nav-home').classList.add('active');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openSolutionDetail(solutionKey) {
+            const data = solutionData[solutionKey];
+            if (!data) return;
+
+            document.getElementById('solutionDetailTitle').innerText = data.title;
+            document.getElementById('solutionDetailBody').innerHTML = data.content;
+
+            const homeView = document.getElementById('home-view');
+            const managementView = document.getElementById('management-view');
+            const contactView = document.getElementById('contact-view');
+            const detailView = document.getElementById('solution-detail-view');
+
+            homeView.classList.remove('active');
+            managementView.classList.remove('active');
+            contactView.classList.remove('active');
+            detailView.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if(element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const icon = document.getElementById('menuIcon');
+            drawer.classList.toggle('open');
+            if(drawer.classList.contains('open')) {
+                icon.className = "fa-solid fa-xmark";
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.className = "fa-solid fa-bars";
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            const icon = document.getElementById('menuIcon');
+            drawer.classList.remove('open');
+            icon.className = "fa-solid fa-bars";
+            document.body.style.overflow = 'auto';
+        }
+
+        function toggleMobileSublinks() {
+            const sublinks = document.getElementById('mobileSublinks');
+            const arrow = document.getElementById('mobileArrow');
+            sublinks.classList.toggle('open');
+            arrow.style.transform = sublinks.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+
+        function updateFileName(input) {
+            const label = document.getElementById('fileUploadLabel');
+            if (input.files && input.files[0]) {
+                label.innerHTML = `<i class="fa-solid fa-file-circle-check" style="color: var(--primary); font-size: 18px;"></i> Selected: ${input.files[0].name}`;
+            }
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            document.getElementById('mainContactForm').style.display = 'none';
+            document.getElementById('formSuccessMessage').style.display = 'block';
+        }
+
+        function resetContactForm() {
+            document.getElementById('mainContactForm').reset();
+            document.getElementById('fileUploadLabel').innerHTML = `<i class="fa-solid fa-cloud-arrow-up" style="color: var(--gold); font-size: 18px;"></i> Click to upload file (PDF, DOC, DOCX)`;
+            document.getElementById('formSuccessMessage').style.display = 'none';
+            document.getElementById('mainContactForm').style.display = 'block';
         }
 
         function submitFeedback(e) {
